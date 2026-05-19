@@ -156,6 +156,9 @@
             margin: 1.5rem 0 2.5rem;
             background: rgba(19, 32, 56, 0.6);
         }
+        .table-swipe-hint {
+            display: none;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -205,6 +208,20 @@
             main { padding: 0 1.25rem 4rem; }
             .media-card { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; }
+            .table-swipe-hint {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                margin: 0.75rem 0 -0.75rem;
+                color: var(--gold-light);
+                font-size: 0.78rem;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+            }
+            .table-swipe-hint .swipe-icon {
+                font-size: 1.25rem;
+                line-height: 1;
+            }
         }
     </style>
 </head>
@@ -254,6 +271,7 @@
             <p>Pricing changes quickly. The "pre-tariff/reference price" column below uses launch MSRP or early normal-market reference pricing where available. The "current buy link" column points to real retailer or manufacturer pages that should be checked at purchase time. Current street pricing can reflect tariffs, scarcity, AI demand, marketplace sellers, and retailer markups.</p>
 
             <h2>GPU Comparison for AI Services</h2>
+            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -330,6 +348,7 @@
             <h2>Passive Rental Is the Weakest Business Model</h2>
             <p>GPU rental marketplaces are useful for price discovery. They also show why passively renting one home card is not a great business by itself. An RTX 4090 can be rented from cloud marketplaces for roughly the low tens of cents per hour, while RTX 5090 listings can range much higher depending on provider, security, and availability.</p>
 
+            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -406,6 +425,7 @@
             </div>
 
             <h2>Coding Model Capability</h2>
+            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
