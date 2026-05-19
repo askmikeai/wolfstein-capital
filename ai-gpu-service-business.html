@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can a Home GPU Become an AI Services Business? | Wolfstein Capital</title>
+    <meta name="description" content="A practical comparison of RTX 3080, RTX 4090, RTX 5090, Radeon AI PRO R9700, RTX 6000 Ada, and RTX PRO 6000 Blackwell for local AI training, coding models, and service revenue.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Can a Home GPU Become an AI Services Business?">
+    <meta property="og:description" content="GPU capability, pricing, buy links, and revenue potential for local AI services.">
+    <meta property="og:image" content="https://askmikeai.github.io/wolfstein-capital/og-image.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0a1628;
+            --navy-light: #132038;
+            --gold: #c9a84c;
+            --gold-light: #d4b86a;
+            --cream: #f5f0e8;
+            --white: #ffffff;
+            --gray: #8a9ab5;
+            --text: #c8d2e0;
+            --line: rgba(201, 168, 76, 0.16);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.96);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        .nav-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .logo span { color: var(--white); font-weight: 400; }
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .nav-link:hover { color: var(--gold); }
+        .article-hero {
+            padding: 6rem 2rem 4rem;
+            background: radial-gradient(ellipse at 30% 20%, rgba(201, 168, 76, 0.08), transparent 54%),
+                        linear-gradient(180deg, var(--navy-light), var(--navy));
+        }
+        .container { max-width: 1080px; margin: 0 auto; }
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 1.4rem;
+        }
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--white);
+            font-weight: 600;
+            line-height: 1.15;
+        }
+        h1 { font-size: clamp(2.7rem, 6vw, 5.2rem); max-width: 920px; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 4rem 0 1rem; }
+        h3 { font-size: 1.55rem; margin: 2rem 0 0.7rem; }
+        .dek {
+            max-width: 780px;
+            color: var(--gray);
+            font-size: 1.12rem;
+            font-weight: 300;
+        }
+        .meta {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .pill {
+            border: 1px solid var(--line);
+            color: var(--gold-light);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        main { padding: 0 2rem 5rem; }
+        p { margin: 1rem 0; color: var(--text); }
+        a { color: var(--gold-light); text-decoration: none; }
+        a:hover { color: var(--gold); text-decoration: underline; }
+        .callout {
+            border-left: 3px solid var(--gold);
+            background: rgba(19, 32, 56, 0.85);
+            padding: 1.4rem 1.6rem;
+            margin: 2rem 0;
+            color: var(--white);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--line);
+            margin: 1.5rem 0 2.5rem;
+            background: rgba(19, 32, 56, 0.6);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+        th, td {
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        th {
+            color: var(--gold);
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(10, 22, 40, 0.85);
+        }
+        td strong { color: var(--white); }
+        ul { margin: 1rem 0 1rem 1.2rem; }
+        li { margin: 0.45rem 0; }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .card {
+            border: 1px solid var(--line);
+            background: rgba(19, 32, 56, 0.65);
+            padding: 1.5rem;
+        }
+        .note {
+            color: var(--gray);
+            font-size: 0.88rem;
+        }
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+        @media (max-width: 760px) {
+            .nav-container { padding: 1rem; }
+            .article-hero { padding: 4rem 1.25rem 3rem; }
+            main { padding: 0 1.25rem 4rem; }
+            .two-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a class="logo" href="index.html">Wolfstein <span>Capital</span></a>
+            <a class="nav-link" href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <header class="article-hero">
+        <div class="container">
+            <div class="eyebrow">AI Infrastructure Notes</div>
+            <h1>Can a Home GPU Become an AI Services Business?</h1>
+            <p class="dek">A practical buyer's guide for founders and operators comparing an RTX 3080, RTX 4090, RTX 5090, AMD Radeon AI PRO R9700, RTX 6000 Ada, and RTX PRO 6000 Blackwell for local model training, coding models, and service revenue.</p>
+            <div class="meta">
+                <span class="pill">Updated May 19, 2026</span>
+                <span class="pill">Local AI</span>
+                <span class="pill">Founder Operations</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="callout">
+                The short version: do not buy a GPU because you think passive rental will make you rich. Buy a GPU if it lets you sell a higher-value service: private RAG, codebase assistants, fine-tuned workflow models, image/product LoRAs, or local AI infrastructure for teams that care about privacy.
+            </div>
+
+            <p>Consumer GPUs have become good enough to build and sell small AI systems from home. They are not enough to train a frontier model from scratch. The money is in packaging capability into a service a business can understand: fewer support tickets, faster engineering work, private document search, custom image generation, or a coding assistant tuned to a specific stack.</p>
+
+            <p>Pricing changes quickly. The "pre-tariff/reference price" column below uses launch MSRP or early normal-market reference pricing where available. The "current buy link" column points to real retailer or manufacturer pages that should be checked at purchase time. Current street pricing can reflect tariffs, scarcity, AI demand, marketplace sellers, and retailer markups.</p>
+
+            <h2>GPU Comparison for AI Services</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>GPU</th>
+                            <th>VRAM</th>
+                            <th>Capability</th>
+                            <th>Pre-tariff / reference price</th>
+                            <th>Current buy links</th>
+                            <th>Service revenue potential</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>RTX 3080</strong></td>
+                            <td>10-12GB</td>
+                            <td>Small coding fine-tunes, QLoRA experiments, RAG prototypes, Stable Diffusion LoRAs. 7B models are possible but tight.</td>
+                            <td>About $699 launch MSRP for the 10GB Founders Edition class.</td>
+                            <td><a href="https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440">Best Buy RTX 3080 page</a><br><a href="https://www.newegg.com/p/pl?N=100007709+601357247">Newegg RTX 3080 listings</a></td>
+                            <td>$500-$3,000/month if used for small implementation projects. Passive rental alone is usually not worth the effort.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RTX 4090</strong></td>
+                            <td>24GB</td>
+                            <td>Best value NVIDIA card for home AI. Good for 7B coding-model QLoRA, image generation, private inference, and serious prototypes.</td>
+                            <td>$1,599 launch MSRP.</td>
+                            <td><a href="https://www.bestbuy.com/site/nvidia-geforce-rtx-4090-24gb-gddr6x-graphics-card-titanium-black/6521430.p?skuId=6521430">Best Buy RTX 4090 page</a><br><a href="https://www.newegg.com/p/pl?d=rtx+4090">Newegg RTX 4090 listings</a></td>
+                            <td>$2,000-$10,000/month if you sell fine-tuning, RAG, coding-agent setup, or workflow automation projects.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RTX 5090</strong></td>
+                            <td>32GB</td>
+                            <td>Best consumer capability. More room for 14B QLoRA experiments, larger batches, faster local inference, and stronger demos.</td>
+                            <td>$1,999 Founders Edition MSRP.</td>
+                            <td><a href="https://www.bestbuy.com/site/pny-geforce-rtx-5090-argb-32gb-oc-gddr7-pci-express-5-0-graphics-card-with-triple-fan-black/6617115.p">Best Buy PNY RTX 5090</a><br><a href="https://www.bestbuy.com/product/sku/6616090">Best Buy MSI RTX 5090</a><br><a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/">NVIDIA RTX 5090</a></td>
+                            <td>$3,000-$15,000/month if paired with client acquisition. Better delivery speed, not automatically a better business.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AMD RX 7900 XTX</strong></td>
+                            <td>24GB</td>
+                            <td>Good VRAM per dollar, but ROCm friction makes client delivery riskier than CUDA. Better for hobbyists than service reliability.</td>
+                            <td>$999 launch MSRP.</td>
+                            <td><a href="https://www.bestbuy.com/site/searchpage.jsp?st=rx+7900+xtx">Best Buy RX 7900 XTX search</a><br><a href="https://www.newegg.com/p/pl?d=rx+7900+xtx">Newegg RX 7900 XTX listings</a></td>
+                            <td>$1,000-$5,000/month if you specialize and can manage Linux/ROCm support. Harder to sell than NVIDIA.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AMD Radeon AI PRO R9700</strong></td>
+                            <td>32GB</td>
+                            <td>Interesting 32GB card for local AI. The catch is software compatibility; CUDA remains the safer client-delivery ecosystem.</td>
+                            <td>About $1,299 official/launch positioning; early retail listings appeared around $1,244-$1,324.</td>
+                            <td><a href="https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro/ai-9000-series/amd-radeon-ai-pro-r9700.html">AMD Radeon AI PRO R9700</a><br><a href="https://www.bhphotovideo.com/c/product/1928519-REG/asus_turbo_ai_pro_r9700_32g_turbo_radeon_ai_pro.html">B&amp;H ASUS Radeon AI PRO R9700</a></td>
+                            <td>$2,000-$8,000/month where 32GB VRAM matters and the stack is controlled. Less plug-and-play than NVIDIA.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RTX 6000 Ada</strong></td>
+                            <td>48GB ECC</td>
+                            <td>Workstation-class VRAM. Better for bigger local fine-tunes, private model hosting, and multi-client workloads.</td>
+                            <td>Roughly $6,800 reference/MSRP class for RTX 6000 Ada.</td>
+                            <td><a href="https://www.bhphotovideo.com/c/product/1753962-REG/pny_vcnrtx6000ada_pb_rtx_6000_ada_generation.html/specs">B&amp;H PNY RTX 6000 Ada</a><br><a href="https://www.pny.com/nvidia-rtx-6000-ada">PNY RTX 6000 Ada</a></td>
+                            <td>$5,000-$20,000/month if you already have B2B clients. Too expensive to buy speculatively.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RTX PRO 6000 Blackwell</strong></td>
+                            <td>96GB ECC</td>
+                            <td>Serious local workstation AI: larger model serving, 30B/70B QLoRA possibilities, enterprise prototypes, and private demos.</td>
+                            <td>Early US retailer listings around $8,565; current street prices often land higher depending on model and availability.</td>
+                            <td><a href="https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/">NVIDIA RTX PRO 6000 Blackwell</a><br><a href="https://www.bhphotovideo.com/c/product/1898470-REG/pny_vcnrtxpro6000b_pb_nvidia_rtx_pro_6000.html/ask-question">B&amp;H PNY RTX PRO 6000</a><br><a href="https://www.cdw.com/product/pny-nvidia-rtx-pro-6000-graphic-card-96-gb-gddr7/8326705">CDW PNY RTX PRO 6000</a></td>
+                            <td>$10,000-$50,000+/month only if attached to enterprise services. This is a client-backed purchase, not a hobby upgrade.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Passive Rental Is the Weakest Business Model</h2>
+            <p>GPU rental marketplaces are useful for price discovery. They also show why passively renting one home card is not a great business by itself. An RTX 4090 can be rented from cloud marketplaces for roughly the low tens of cents per hour, while RTX 5090 listings can range much higher depending on provider, security, and availability.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>GPU</th>
+                            <th>Example rental market</th>
+                            <th>30% utilization gross</th>
+                            <th>80% utilization gross</th>
+                            <th>Takeaway</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RTX 3080</td>
+                            <td>$0.10-$0.20/hr estimate</td>
+                            <td>$22-$43/mo</td>
+                            <td>$58-$115/mo</td>
+                            <td>Not worth buying for rental.</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 4090</td>
+                            <td>$0.26-$0.40/hr marketplace range</td>
+                            <td>$56-$86/mo</td>
+                            <td>$150-$230/mo</td>
+                            <td>Useful benchmark, poor standalone business.</td>
+                        </tr>
+                        <tr>
+                            <td>RTX 5090</td>
+                            <td>$0.50-$0.99/hr observed cloud listings</td>
+                            <td>$108-$214/mo</td>
+                            <td>$288-$570/mo</td>
+                            <td>Better, but still slow payback after power and fees.</td>
+                        </tr>
+                        <tr>
+                            <td>48GB workstation</td>
+                            <td>$0.75-$1.50/hr estimate</td>
+                            <td>$162-$324/mo</td>
+                            <td>$432-$864/mo</td>
+                            <td>Needs high utilization to justify capital.</td>
+                        </tr>
+                        <tr>
+                            <td>96GB workstation</td>
+                            <td>$2-$5/hr estimate</td>
+                            <td>$432-$1,080/mo</td>
+                            <td>$1,152-$2,880/mo</td>
+                            <td>Can work only with demand, trust, and uptime.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>What You Can Actually Sell</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Service Ideas</h3>
+                    <ul>
+                        <li>Private RAG over company docs, tickets, contracts, or code.</li>
+                        <li>A repo-specific coding assistant tuned to Laravel, Vue, Python, Django, or internal conventions.</li>
+                        <li>Small coding-model QLoRA fine-tunes for internal workflows.</li>
+                        <li>Stable Diffusion product LoRAs for ecommerce, agencies, or creator brands.</li>
+                        <li>Local AI workstation setup for privacy-sensitive teams.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>What to Charge</h3>
+                    <ul>
+                        <li>Small LoRA or prototype: $300-$3,000.</li>
+                        <li>Private RAG implementation: $2,000-$15,000.</li>
+                        <li>Repo-specific coding assistant: $3,000-$20,000.</li>
+                        <li>Private model hosting/prototype: $500-$5,000/month.</li>
+                        <li>Enterprise AI workstation rollout: $2,000-$20,000.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Coding Model Capability</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>RTX 3080</th>
+                            <th>RTX 4090</th>
+                            <th>RTX 5090</th>
+                            <th>48GB GPU</th>
+                            <th>96GB GPU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fine-tune 1B-3B coding model</td>
+                            <td>Yes</td>
+                            <td>Easy</td>
+                            <td>Easy</td>
+                            <td>Easy</td>
+                            <td>Easy</td>
+                        </tr>
+                        <tr>
+                            <td>QLoRA 7B coding model</td>
+                            <td>Tight</td>
+                            <td>Good</td>
+                            <td>Good</td>
+                            <td>Easy</td>
+                            <td>Easy</td>
+                        </tr>
+                        <tr>
+                            <td>QLoRA 14B coding model</td>
+                            <td>Usually no</td>
+                            <td>Possible/tight</td>
+                            <td>Possible</td>
+                            <td>Good</td>
+                            <td>Easy</td>
+                        </tr>
+                        <tr>
+                            <td>Full fine-tune 7B</td>
+                            <td>No</td>
+                            <td>Very tight</td>
+                            <td>Very tight</td>
+                            <td>Possible</td>
+                            <td>Good</td>
+                        </tr>
+                        <tr>
+                            <td>Train Anthropic/OpenAI-scale model</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Recommendation</h2>
+            <p>If you already own an RTX 3080, use it to learn the workflow and sell small projects. Do not upgrade until a real client or repeated VRAM ceiling justifies it. If you are buying specifically to build a service business, the RTX 4090 is still the best ROI card, the RTX 5090 is the best consumer capability card, and 48GB/96GB workstation cards should be bought only when revenue is already visible.</p>
+
+            <p>The GPU is not the product. The product is the business outcome you deliver with it.</p>
+
+            <h2>Sources and Purchase References</h2>
+            <p class="note">Sources include NVIDIA product pages, retailer listings, and GPU rental market references checked on May 19, 2026. Prices and stock can change quickly.</p>
+            <ul>
+                <li><a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/">NVIDIA GeForce RTX 5090</a></li>
+                <li><a href="https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090">NVIDIA GeForce RTX 4090</a></li>
+                <li><a href="https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/">NVIDIA RTX PRO 6000 Blackwell family</a></li>
+                <li><a href="https://www.bhphotovideo.com/c/product/1753962-REG/pny_vcnrtx6000ada_pb_rtx_6000_ada_generation.html/specs">B&amp;H PNY RTX 6000 Ada listing</a></li>
+                <li><a href="https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro/ai-9000-series/amd-radeon-ai-pro-r9700.html">AMD Radeon AI PRO R9700</a></li>
+                <li><a href="https://gpuperhour.com/rent/rtx-4090">GPUPerHour RTX 4090 rental tracker</a></li>
+                <li><a href="https://www.runpod.io/gpu-models/rtx-5090">RunPod RTX 5090 rental page</a></li>
+            </ul>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">&copy; 2026 Wolfstein Capital Corporation. This article is informational and not investment advice.</div>
+    </footer>
+</body>
+</html>
