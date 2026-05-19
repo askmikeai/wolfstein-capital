@@ -174,6 +174,7 @@
             color: var(--white);
         }
         .table-wrap {
+            position: relative;
             overflow-x: auto;
             border: 1px solid var(--line);
             margin: 1.5rem 0 2.5rem;
@@ -231,19 +232,66 @@
             main { padding: 0 1.25rem 4rem; }
             .media-card { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; }
+            .table-wrap {
+                margin-top: 0.8rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--gold) rgba(10, 22, 40, 0.9);
+            }
+            .table-wrap::-webkit-scrollbar {
+                height: 8px;
+            }
+            .table-wrap::-webkit-scrollbar-track {
+                background: rgba(10, 22, 40, 0.9);
+            }
+            .table-wrap::-webkit-scrollbar-thumb {
+                background: var(--gold);
+                border-radius: 999px;
+            }
+            .table-wrap::after {
+                content: '';
+                position: sticky;
+                right: 0;
+                top: 0;
+                display: block;
+                float: right;
+                width: 42px;
+                height: 0;
+                min-height: 100%;
+                pointer-events: none;
+                background: linear-gradient(90deg, rgba(10, 22, 40, 0), var(--navy));
+            }
             .table-swipe-hint {
-                display: inline-flex;
+                display: flex;
                 align-items: center;
-                gap: 0.45rem;
-                margin: 0.75rem 0 -0.75rem;
+                justify-content: space-between;
+                gap: 0.8rem;
+                margin: 0.75rem 0 0;
+                padding: 0.65rem 0.8rem;
+                border: 1px solid rgba(201, 168, 76, 0.18);
+                background: rgba(19, 32, 56, 0.72);
                 color: var(--gold-light);
                 font-size: 0.78rem;
                 letter-spacing: 1.2px;
                 text-transform: uppercase;
             }
-            .table-swipe-hint .swipe-icon {
-                font-size: 1.25rem;
-                line-height: 1;
+            .table-swipe-hint::after {
+                content: '';
+                width: 64px;
+                height: 12px;
+                border-radius: 999px;
+                background:
+                    linear-gradient(90deg, transparent 0 9px, var(--gold) 9px 16px, transparent 16px 24px),
+                    linear-gradient(90deg, var(--gold) 0 36px, transparent 36px);
+                background-repeat: no-repeat;
+                background-position: right center, left center;
+                background-size: 24px 12px, 48px 2px;
+                opacity: 0.95;
+                animation: horizontalHint 1.35s ease-in-out infinite;
+            }
+            @keyframes horizontalHint {
+                0%, 100% { transform: translateX(0); opacity: 0.68; }
+                50% { transform: translateX(8px); opacity: 1; }
             }
         }
     </style>
@@ -300,7 +348,7 @@
             <p>Pricing changes quickly. The "pre-tariff/reference price" column below uses launch MSRP or early normal-market reference pricing where available. The "current buy link" column points to real retailer or manufacturer pages that should be checked at purchase time. Current street pricing can reflect tariffs, scarcity, AI demand, marketplace sellers, and retailer markups.</p>
 
             <h2>GPU Comparison for AI Services</h2>
-            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
+            <div class="table-swipe-hint" aria-hidden="true"><span>More columns to the right</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -377,7 +425,7 @@
             <h2>Passive Rental Is the Weakest Business Model</h2>
             <p>GPU rental marketplaces are useful for price discovery. They also show why passively renting one home card is not a great business by itself. An RTX 4090 can be rented from cloud marketplaces for roughly the low tens of cents per hour, while RTX 5090 listings can range much higher depending on provider, security, and availability.</p>
 
-            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
+            <div class="table-swipe-hint" aria-hidden="true"><span>More columns to the right</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -454,7 +502,7 @@
             </div>
 
             <h2>Coding Model Capability</h2>
-            <div class="table-swipe-hint" aria-hidden="true"><span class="swipe-icon">☝</span><span>Swipe table</span></div>
+            <div class="table-swipe-hint" aria-hidden="true"><span>More columns to the right</span></div>
             <div class="table-wrap">
                 <table>
                     <thead>
