@@ -150,12 +150,15 @@
             align-items: center;
             justify-content: center;
             border: 1px solid var(--line);
+            background: transparent;
             color: var(--gold-light);
             padding: 0.55rem 0.75rem;
+            font-family: 'Inter', sans-serif;
             font-size: 0.74rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
+            cursor: pointer;
         }
         .media-action:hover {
             border-color: var(--gold);
@@ -331,8 +334,8 @@
                         <source src="assets/audio/ai-gpu-service-business.mp3" type="audio/mpeg">
                     </audio>
                     <div class="media-actions">
-                        <a class="media-action" href="https://wa.me/?text=Listen%20to%20the%20AI%20GPU%20services%20briefing%3A%20https%3A%2F%2Fwolfstein-capital.vercel.app%2Fassets%2Faudio%2Fai-gpu-service-business.mp3" target="_blank" rel="noopener">Share MP3</a>
-                        <a class="media-action" href="https://wa.me/?text=Watch%20the%20AI%20GPU%20services%20video%3A%20https%3A%2F%2Fwolfstein-capital.vercel.app%2Fassets%2Fvideo%2Fai-gpu-service-business-full.mp4" target="_blank" rel="noopener">Share Video</a>
+                        <button class="media-action" type="button" onclick="shareMedia('audio')">Share MP3</button>
+                        <button class="media-action" type="button" onclick="shareMedia('video')">Share Video</button>
                         <a class="media-action" href="assets/audio/ai-gpu-service-business.mp3">Open MP3</a>
                         <a class="media-action" href="assets/video/ai-gpu-service-business-full.mp4">Open Video</a>
                     </div>
@@ -582,5 +585,39 @@
     <footer>
         <div class="container">&copy; 2026 Wolfstein Capital Corporation. This article is informational and not investment advice.</div>
     </footer>
+    <script>
+        const mediaShareTargets = {
+            audio: {
+                title: 'AI GPU services briefing',
+                text: 'Listen to the AI GPU services briefing by Michael Friedberg.',
+                url: 'https://wolfstein-capital.vercel.app/assets/audio/ai-gpu-service-business.mp3',
+            },
+            video: {
+                title: 'AI GPU services video',
+                text: 'Watch the AI GPU services video by Michael Friedberg.',
+                url: 'https://wolfstein-capital.vercel.app/assets/video/ai-gpu-service-business-full.mp4',
+            },
+        };
+
+        async function shareMedia(type) {
+            const target = mediaShareTargets[type];
+            if (!target) return;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(target);
+                    return;
+                } catch (error) {
+                    if (error && error.name === 'AbortError') return;
+                }
+            }
+
+            const fallbackText = encodeURIComponent(`${target.text} ${target.url}`);
+            window.location.href = `whatsapp://send?text=${fallbackText}`;
+            setTimeout(() => {
+                window.location.href = `https://wa.me/?text=${fallbackText}`;
+            }, 700);
+        }
+    </script>
 </body>
 </html>
