@@ -127,6 +127,28 @@
             background: var(--navy);
             border: 1px solid rgba(201, 168, 76, 0.12);
         }
+        .video-shell {
+            position: relative;
+        }
+        .autoplay-prompt {
+            display: none;
+            position: absolute;
+            left: 50%;
+            bottom: 1rem;
+            transform: translateX(-50%);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            background: rgba(10, 22, 40, 0.88);
+            color: var(--gold-light);
+            padding: 0.7rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .autoplay-prompt.visible {
+            display: inline-flex;
+        }
         .media-card h2 {
             font-size: 1.65rem;
             margin: 0 0 0.8rem;
@@ -324,9 +346,12 @@
     <main>
         <article class="container">
             <section class="media-card" id="media" aria-label="Article audio and video">
-                <video controls preload="metadata" poster="og-image.jpg">
-                    <source src="assets/video/ai-gpu-service-business-full.mp4" type="video/mp4">
-                </video>
+                <div class="video-shell">
+                    <video controls muted playsinline webkit-playsinline preload="metadata" poster="og-image.jpg">
+                        <source src="assets/video/ai-gpu-service-business-full.mp4" type="video/mp4">
+                    </video>
+                    <button class="autoplay-prompt" type="button" onclick="playArticleVideo()">Tap to play video</button>
+                </div>
                 <div>
                     <h2>Listen to the Briefing</h2>
                     <p>A short narrated version of the article covering the practical business case for turning a home GPU into AI services revenue.</p>
@@ -619,6 +644,19 @@
             }, 700);
         }
 
+        function playArticleVideo() {
+            const video = document.querySelector('#media video');
+            const prompt = document.querySelector('.autoplay-prompt');
+            if (!video) return;
+            video.muted = false;
+            video.removeAttribute('muted');
+            video.play().then(() => {
+                if (prompt) prompt.classList.remove('visible');
+            }).catch(() => {
+                if (prompt) prompt.classList.add('visible');
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const autoplay = params.get('autoplay');
@@ -630,9 +668,19 @@
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
             if (media) {
-                media.muted = autoplay === 'video';
+                if (autoplay === 'video') {
+                    media.muted = true;
+                    media.defaultMuted = true;
+                    media.setAttribute('muted', '');
+                    media.setAttribute('playsinline', '');
+                    media.setAttribute('webkit-playsinline', '');
+                    media.setAttribute('autoplay', '');
+                }
+                media.load();
                 media.play().catch(() => {
                     media.controls = true;
+                    const prompt = document.querySelector('.autoplay-prompt');
+                    if (prompt && autoplay === 'video') prompt.classList.add('visible');
                 });
             }
         });
