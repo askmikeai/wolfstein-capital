@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolfstein Capital Corporation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a1628;
+            --navy-light: #132038;
+            --gold: #c9a84c;
+            --gold-light: #d4b86a;
+            --cream: #f5f0e8;
+            --white: #ffffff;
+            --gray: #8a9ab5;
+            --text: #c8d2e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 30%, rgba(19, 32, 56, 0.8) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            color: var(--gold);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        /* Sections */
+        section {
+            padding: 7rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray);
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            border-left: 2px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-card {
+            background: var(--navy-light);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .about-card blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card cite {
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        /* Focus Areas */
+        .focus {
+            background: var(--navy-light);
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .focus-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .focus-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        .focus-card:hover::after {
+            width: 100%;
+        }
+
+        .focus-card:hover {
+            border-color: rgba(201, 168, 76, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .focus-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .focus-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .focus-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+            max-width: 900px;
+        }
+
+        .team-card {
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .team-photo {
+            height: 320px;
+            background: linear-gradient(135deg, var(--navy-light) 0%, rgba(201, 168, 76, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-photo .initials {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            font-weight: 600;
+            opacity: 0.6;
+        }
+
+        .team-info {
+            padding: 2rem;
+        }
+
+        .team-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .team-role {
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .team-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Approach */
+        .approach-timeline {
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .approach-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(201, 168, 76, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-weight: 600;
+            background: var(--navy);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--navy-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: var(--navy);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--navy);
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-item h4 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .footer-legal {
+            font-size: 0.75rem;
+            color: var(--gray);
+            opacity: 0.6;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 2rem 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(10, 22, 40, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Wolfstein <span>Capital</span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#focus" onclick="closeMenu()">Focus</a></li>
+                <li><a href="#team" onclick="closeMenu()">Team</a></li>
+                <li><a href="#approach" onclick="closeMenu()">Approach</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Venture Capital</div>
+            <h1>Investing in the <em>Future</em> of Innovation</h1>
+            <p>Wolfstein Capital Corporation partners with visionary founders building transformative companies from the ground up.</p>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary">Submit Your Startup</a>
+                <a href="#about" class="btn btn-outline">Our Thesis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="fade-in">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Conviction-Driven Capital for Early-Stage Founders</h2>
+                    <div class="divider"></div>
+                    <p class="section-subtitle">
+                        Wolfstein Capital Corporation is a venture capital firm founded by Michael Friedberg and Gabriel Gomez. We invest in early-stage startups with exceptional teams, defensible technology, and the potential to reshape industries.
+                    </p>
+                    <p class="section-subtitle" style="margin-top: 1rem;">
+                        We bring more than capital to the table — we offer operational expertise, strategic guidance, and a network built across decades in technology and finance.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">Seed &ndash; A</div>
+                            <div class="stat-label">Investment Stage</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">$250K&ndash;$2M</div>
+                            <div class="stat-label">Check Size</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual fade-in">
+                    <div class="about-card">
+                        <blockquote>
+                            "We don't just invest in ideas. We invest in the people relentless enough to turn those ideas into reality."
+                        </blockquote>
+                        <cite>Michael Friedberg &amp; Gabriel Gomez, Co-Founders</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="focus" id="focus">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Investment Focus</div>
+                <h2 class="section-title">Where We Deploy Capital</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">We focus on sectors where technology creates step-change improvements in how people live and work.</p>
+            </div>
+            <div class="focus-grid">
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#9000;</span>
+                    <h3>Artificial Intelligence &amp; Machine Learning</h3>
+                    <p>Applied AI infrastructure, vertical AI products, and intelligent automation that deliver measurable ROI from day one.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#9878;</span>
+                    <h3>FinTech &amp; Financial Infrastructure</h3>
+                    <p>Next-generation payments, lending platforms, embedded finance, and tools that modernize financial services.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#9729;</span>
+                    <h3>Enterprise SaaS &amp; Cloud</h3>
+                    <p>B2B platforms that solve deep workflow pain points with elegant, scalable software solutions.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#9764;</span>
+                    <h3>Health Tech &amp; Biotech</h3>
+                    <p>Digital health platforms, diagnostics, and technology-enabled care models improving patient outcomes at scale.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#9889;</span>
+                    <h3>Climate &amp; Clean Energy</h3>
+                    <p>Breakthrough technologies in energy storage, carbon capture, sustainable materials, and the electrification economy.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <span class="focus-icon">&#8734;</span>
+                    <h3>Web3 &amp; Decentralized Systems</h3>
+                    <p>Infrastructure-layer protocols, decentralized finance, and tokenized assets driving the next internet evolution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Leadership</div>
+                <h2 class="section-title">The Partners</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Two operators united by a shared conviction: the best founders deserve partners who understand the building process from the inside.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <span class="initials">MF</span>
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Friedberg</h3>
+                        <div class="team-role">Co-Founder &amp; Managing Partner</div>
+                        <p>Michael brings deep expertise in technology and entrepreneurship to Wolfstein Capital. His hands-on approach to partnering with founders drives portfolio companies to scale with speed and precision.</p>
+                    </div>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <span class="initials">GG</span>
+                    </div>
+                    <div class="team-info">
+                        <h3>Gabriel Gomez</h3>
+                        <div class="team-role">Co-Founder &amp; Managing Partner</div>
+                        <p>Gabriel's strategic acumen and operational background make him a trusted advisor to founding teams. He specializes in go-to-market strategy and building scalable business models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach -->
+    <section id="approach" style="background: var(--navy-light);">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Our Process</div>
+                <h2 class="section-title">How We Work With Founders</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="approach-timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">01</div>
+                    <div class="timeline-content">
+                        <h3>Discovery</h3>
+                        <p>We evaluate startups based on team strength, market size, technology differentiation, and alignment with our thesis. We move fast and respect founders' time.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">02</div>
+                    <div class="timeline-content">
+                        <h3>Due Diligence</h3>
+                        <p>A rigorous but founder-friendly process. We dig into unit economics, competitive positioning, and product-market fit indicators to build deep conviction.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">03</div>
+                    <div class="timeline-content">
+                        <h3>Partnership</h3>
+                        <p>Post-investment, we become active partners — not passive check writers. We open our network, advise on strategy, and help with hiring, fundraising, and scaling.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">04</div>
+                    <div class="timeline-content">
+                        <h3>Growth</h3>
+                        <p>We support portfolio companies through follow-on rounds, strategic introductions, and board-level guidance to navigate the journey from startup to market leader.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Let's Build Together</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Whether you're a founder with a pitch or an investor looking to co-invest, we'd like to hear from you.</p>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="you@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Inquiry Type</label>
+                        <select id="type" name="type">
+                            <option value="founder">Founder / Startup Pitch</option>
+                            <option value="investor">Co-Investment Opportunity</option>
+                            <option value="partnership">Strategic Partnership</option>
+                            <option value="other">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your company or opportunity..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+                </form>
+                <div class="contact-details fade-in">
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p><a href="mailto:info@wolfsteincapital.com">info@wolfsteincapital.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Partnerships</h4>
+                        <p><a href="mailto:partners@wolfsteincapital.com">partners@wolfsteincapital.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Pitches</h4>
+                        <p><a href="mailto:pitch@wolfsteincapital.com">pitch@wolfsteincapital.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Location</h4>
+                        <p>United States</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">&copy; 2026 Wolfstein Capital Corporation. All rights reserved.</div>
+            <div class="footer-legal">This website does not constitute an offer to sell or a solicitation of an offer to buy securities.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Form handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Message Sent';
+            btn.style.background = '#2d8a4e';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.textContent = 'Send Message';
+                btn.style.background = '';
+                btn.style.color = '';
+                e.target.reset();
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
