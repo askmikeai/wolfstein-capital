@@ -4,10 +4,31 @@ import { dirname, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const ENV_PATH = resolve(ROOT, '.env');
-const BLOG_PATH = resolve(ROOT, 'content/blog-post.txt');
-const AUDIO_PATH = resolve(ROOT, 'assets/audio/wolfstein-capital-thesis.mp3');
-const VIDEO_PATH = resolve(ROOT, 'assets/video/wolfstein-capital-thesis.mp4');
-const RUNWAY_TASK_PATH = resolve(ROOT, 'assets/video/wolfstein-capital-thesis.runway-task.json');
+
+const POSTS = {
+  thesis: {
+    source: 'content/blog-post.txt',
+    audio: 'assets/audio/wolfstein-capital-thesis.mp3',
+    video: 'assets/video/wolfstein-capital-thesis.mp4',
+    task: 'assets/video/wolfstein-capital-thesis.runway-task.json',
+    prompt: [
+      'Cinematic investment brand film for Wolfstein Capital, an angel investment group backing pre-seed founders.',
+      'Opening scene: early morning city skyline, then close details of founders sketching product ideas, laptops, prototypes, pitch notes, and warm investor conversations.',
+      'Mood: refined, optimistic, serious, premium finance brand, navy and gold color accents, realistic live-action, smooth slow camera movement, no readable text, no logos.',
+    ].join(' '),
+  },
+  'ai-gpu': {
+    source: 'content/ai-gpu-service-business-narration.txt',
+    audio: 'assets/audio/ai-gpu-service-business.mp3',
+    video: 'assets/video/ai-gpu-service-business.mp4',
+    task: 'assets/video/ai-gpu-service-business.runway-task.json',
+    prompt: [
+      'Cinematic editorial technology video about a home GPU workstation becoming an AI services business.',
+      'A quiet desktop workstation with a powerful graphics card, glowing monitors showing abstract model graphs, code editor windows, private document search interfaces, and a founder reviewing client workflows.',
+      'Mood: realistic, premium technology documentary, navy and gold accents, smooth slow camera movement, practical business tone, no readable text, no brand logos.',
+    ].join(' '),
+  },
+};
 
 function parseEnv(source) {
   const env = {};
@@ -49,7 +70,7 @@ async function writeBinary(filePath, response) {
   return buffer.length;
 }
 
-async function generateAudio(env, script) {
+async function generateAudio(env, post, script) {
   const apiKey = env.ELEVENLABS_API_KEY;
   if (!apiKey) throw new Error('ELEVENLABS_API_KEY is missing from .env');
 
@@ -75,8 +96,9 @@ async function generateAudio(env, script) {
     }),
   });
 
-  const bytes = await writeBinary(AUDIO_PATH, response);
-  console.log(`Audio written: ${AUDIO_PATH} (${bytes} bytes)`);
+  const audioPath = resolve(ROOT, post.audio);
+  const bytes = await writeBinary(audioPath, response);
+  console.log(`Audio written: ${audioPath} (${bytes} bytes)`);
 }
 
 async function createRunwayTask(env, prompt) {
@@ -123,16 +145,12 @@ async function retrieveRunwayTask(env, taskId) {
   return response.json();
 }
 
-async function generateVideo(env) {
-  const prompt = [
-    'Cinematic investment brand film for Wolfstein Capital, an angel investment group backing pre-seed founders.',
-    'Opening scene: early morning city skyline, then close details of founders sketching product ideas, laptops, prototypes, pitch notes, and warm investor conversations.',
-    'Mood: refined, optimistic, serious, premium finance brand, navy and gold color accents, realistic live-action, smooth slow camera movement, no readable text, no logos.',
-  ].join(' ');
-
-  const task = await createRunwayTask(env, prompt);
-  await ensureParent(RUNWAY_TASK_PATH);
-  await writeFile(RUNWAY_TASK_PATH, `${JSON.stringify(task, null, 2)}\n`);
+async function generateVideo(env, post) {
+  const taskPath = resolve(ROOT, post.task);
+  const videoPath = resolve(ROOT, post.video);
+  const task = await createRunwayTask(env, post.prompt);
+  await ensureParent(taskPath);
+  await writeFile(taskPath, `${JSON.stringify(task, null, 2)}\n`);
   console.log(`Runway task created: ${task.id}`);
 
   let latest = task;
@@ -147,27 +165,30 @@ async function generateVideo(env) {
     }
   }
 
-  await writeFile(RUNWAY_TASK_PATH, `${JSON.stringify(latest, null, 2)}\n`);
+  await writeFile(taskPath, `${JSON.stringify(latest, null, 2)}\n`);
   if (latest.status !== 'SUCCEEDED' || !latest.output?.[0]) {
     throw new Error(`Runway task did not finish in time. Last status: ${latest.status}`);
   }
 
   const response = await fetch(latest.output[0]);
-  const bytes = await writeBinary(VIDEO_PATH, response);
-  console.log(`Video written: ${VIDEO_PATH} (${bytes} bytes)`);
+  const bytes = await writeBinary(videoPath, response);
+  console.log(`Video written: ${videoPath} (${bytes} bytes)`);
 }
 
 async function main() {
   const env = await loadConfig();
-  const script = (await readFile(BLOG_PATH, 'utf8')).trim();
-  const mode = process.argv[2] || 'all';
+  const maybePost = process.argv[2] || 'thesis';
+  const postKey = POSTS[maybePost] ? maybePost : 'thesis';
+  const mode = POSTS[maybePost] ? process.argv[3] || 'all' : process.argv[2] || 'all';
+  const post = POSTS[postKey];
+  const script = (await readFile(resolve(ROOT, post.source), 'utf8')).trim();
 
   if (mode === 'audio' || mode === 'all') {
-    await generateAudio(env, script);
+    await generateAudio(env, post, script);
   }
 
   if (mode === 'video' || mode === 'all') {
-    await generateVideo(env);
+    await generateVideo(env, post);
   }
 }
 

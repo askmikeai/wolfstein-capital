@@ -109,6 +109,35 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
+        .media-card {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 1.5rem;
+            align-items: center;
+            margin: 2.5rem 0;
+            padding: 1.25rem;
+            border: 1px solid var(--line);
+            background: rgba(19, 32, 56, 0.68);
+        }
+        .media-card video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            background: var(--navy);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+        }
+        .media-card h2 {
+            font-size: 1.65rem;
+            margin: 0 0 0.8rem;
+        }
+        .media-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .media-card audio {
+            width: 100%;
+            margin-top: 1rem;
+        }
         main { padding: 0 2rem 5rem; }
         p { margin: 1rem 0; color: var(--text); }
         a { color: var(--gold-light); text-decoration: none; }
@@ -173,6 +202,7 @@
             .nav-container { padding: 1rem; }
             .article-hero { padding: 4rem 1.25rem 3rem; }
             main { padding: 0 1.25rem 4rem; }
+            .media-card { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; }
         }
     </style>
@@ -200,6 +230,19 @@
 
     <main>
         <article class="container">
+            <section class="media-card" id="media" aria-label="Article audio and video">
+                <video controls preload="metadata" poster="og-image.jpg">
+                    <source src="assets/video/ai-gpu-service-business.mp4" type="video/mp4">
+                </video>
+                <div>
+                    <h2>Listen to the Briefing</h2>
+                    <p>A short narrated version of the article covering the practical business case for turning a home GPU into AI services revenue.</p>
+                    <audio controls preload="metadata">
+                        <source src="assets/audio/ai-gpu-service-business.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </section>
+
             <div class="callout">
                 The short version: do not buy a GPU because you think passive rental will make you rich. Buy a GPU if it lets you sell a higher-value service: private RAG, codebase assistants, fine-tuned workflow models, image/product LoRAs, or local AI infrastructure for teams that care about privacy.
             </div>

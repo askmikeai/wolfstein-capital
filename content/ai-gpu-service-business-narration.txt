@@ -1,0 +1,11 @@
+Can a home GPU become an AI services business?
+
+The short answer is yes, but not as a passive rental machine. A GPU becomes a business when it helps you sell a useful service: private document search, codebase assistants, small model fine-tunes, image generation workflows, or local AI infrastructure for teams that care about privacy.
+
+An RTX 3080 is enough to learn the workflow and deliver small prototypes. An RTX 4090 is still the best return-on-investment card for most local AI services because it has 24 gigabytes of VRAM and strong CUDA support. An RTX 5090 gives more room for larger demos and faster delivery, but it does not automatically create demand.
+
+Workstation cards like the RTX 6000 Ada or RTX PRO 6000 Blackwell can be powerful, especially with 48 or 96 gigabytes of VRAM, but they should not be bought speculatively. Those cards make sense when client revenue is already visible.
+
+The weak business model is passive GPU rental. At normal marketplace prices, a single home card usually produces slow payback after power, fees, downtime, and support. The stronger model is services. Build a private RAG system for a business. Set up a repo-specific coding assistant. Fine-tune a small workflow model. Create product LoRAs for ecommerce. Help a team run AI locally and securely.
+
+The GPU is not the product. The product is the business outcome you deliver with it.
