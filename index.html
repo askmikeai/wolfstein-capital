@@ -528,6 +528,48 @@
             line-height: 1.7;
         }
 
+        /* Media */
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.65fr;
+            gap: 3rem;
+            align-items: start;
+            margin-top: 4rem;
+        }
+
+        .media-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--navy-light);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            display: block;
+        }
+
+        .media-audio-panel {
+            border-left: 2px solid var(--gold);
+            padding-left: 2rem;
+        }
+
+        .media-audio-panel h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .media-audio-panel p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .media-audio {
+            width: 100%;
+            display: block;
+        }
+
         /* Contact */
         .contact {
             background: var(--navy-light);
@@ -670,6 +712,7 @@
         /* Responsive */
         @media (max-width: 968px) {
             .about-grid,
+            .media-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -735,6 +778,7 @@
                 <li><a href="#team" onclick="closeMenu()">Team</a></li>
                 <li><a href="#approach" onclick="closeMenu()">Approach</a></li>
                 <li><a href="ai-gpu-service-business.html" onclick="closeMenu()">Blog</a></li>
+                <li><a href="#media" onclick="closeMenu()">Media</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
@@ -909,6 +953,30 @@
                         <h3>Growth</h3>
                         <p>As portfolio companies grow, we help connect founders with larger investors, advisors, and opportunities to take their startup to the next level.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media -->
+    <section id="media">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Thesis Briefing</div>
+                <h2 class="section-title">Listen to the Wolfstein Capital Thesis</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">A short audio and video version of our early-stage investment thesis for founders and co-investors.</p>
+            </div>
+            <div class="media-grid">
+                <video class="media-video fade-in" controls preload="metadata" poster="og-image.jpg">
+                    <source src="assets/video/wolfstein-capital-thesis.mp4" type="video/mp4">
+                </video>
+                <div class="media-audio-panel fade-in">
+                    <h3>Audio Version</h3>
+                    <p>Hear the thesis behind how we think about backing pre-seed founders from day one.</p>
+                    <audio class="media-audio" controls preload="metadata">
+                        <source src="assets/audio/wolfstein-capital-thesis.mp3" type="audio/mpeg">
+                    </audio>
                 </div>
             </div>
         </div>
