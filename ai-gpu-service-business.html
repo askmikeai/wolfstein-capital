@@ -139,6 +139,29 @@
             width: 100%;
             margin-top: 1rem;
         }
+        .media-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 1rem;
+        }
+        .media-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            color: var(--gold-light);
+            padding: 0.55rem 0.75rem;
+            font-size: 0.74rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .media-action:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+        }
         main { padding: 0 2rem 5rem; }
         p { margin: 1rem 0; color: var(--text); }
         a { color: var(--gold-light); text-decoration: none; }
@@ -259,6 +282,12 @@
                     <audio controls preload="metadata">
                         <source src="assets/audio/ai-gpu-service-business.mp3" type="audio/mpeg">
                     </audio>
+                    <div class="media-actions">
+                        <a class="media-action" href="https://wa.me/?text=Listen%20to%20the%20AI%20GPU%20services%20briefing%3A%20https%3A%2F%2Fwolfstein-capital.vercel.app%2Fassets%2Faudio%2Fai-gpu-service-business.mp3" target="_blank" rel="noopener">Share MP3</a>
+                        <a class="media-action" href="https://wa.me/?text=Watch%20the%20AI%20GPU%20services%20video%3A%20https%3A%2F%2Fwolfstein-capital.vercel.app%2Fassets%2Fvideo%2Fai-gpu-service-business-full.mp4" target="_blank" rel="noopener">Share Video</a>
+                        <a class="media-action" href="assets/audio/ai-gpu-service-business.mp3">Open MP3</a>
+                        <a class="media-action" href="assets/video/ai-gpu-service-business-full.mp4">Open Video</a>
+                    </div>
                 </div>
             </section>
 
