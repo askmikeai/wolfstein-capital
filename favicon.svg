@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="4" fill="#0a1628"/>
+  <!-- Mini shield -->
+  <path d="M32,10 L48,18 L48,34 Q48,46 32,52 Q16,46 16,34 L16,18 Z"
+        fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+  <!-- Wolf head - simplified heraldic -->
+  <g transform="translate(32,32)" fill="#c9a84c">
+    <polygon points="-8,-16 -6,-6 -4,-9"/>
+    <polygon points="8,-16 6,-6 4,-9"/>
+    <path d="M-6,-6 Q-8,-2 -7,2 Q-6,5 -5,7 L-2,10 Q-1,11 0,13 Q1,11 2,10 L5,7 Q6,5 7,2 Q8,-2 6,-6 Q5,-8 3,-9 Q2,-10 0,-10 Q-2,-10 -3,-9 Q-5,-8 -6,-6 Z"/>
+    <path d="M-4,-2 L-3,-3 L-1.5,-2 L-3,-1 Z" fill="#0a1628"/>
+    <path d="M4,-2 L3,-3 L1.5,-2 L3,-1 Z" fill="#0a1628"/>
+    <ellipse cx="0" cy="3" rx="1.5" ry="1" fill="#0a1628"/>
+  </g>
+</svg>

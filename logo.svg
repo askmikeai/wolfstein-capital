@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="goldShield" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2c872"/>
+      <stop offset="50%" style="stop-color:#c9a84c"/>
+      <stop offset="100%" style="stop-color:#a07e2e"/>
+    </linearGradient>
+    <linearGradient id="darkGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9a84c"/>
+      <stop offset="100%" style="stop-color:#8a6b28"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0a1628"/>
+
+  <!-- Outer ornamental border -->
+  <rect x="30" y="30" width="452" height="452" rx="4" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+  <rect x="38" y="38" width="436" height="436" rx="2" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Corner ornaments -->
+  <g fill="#c9a84c" opacity="0.4">
+    <path d="M30,30 L60,30 L60,34 L34,34 L34,60 L30,60 Z"/>
+    <path d="M482,30 L452,30 L452,34 L478,34 L478,60 L482,60 Z"/>
+    <path d="M30,482 L60,482 L60,478 L34,478 L34,452 L30,452 Z"/>
+    <path d="M482,482 L452,482 L452,478 L478,478 L478,452 L482,452 Z"/>
+  </g>
+
+  <!-- Shield shape -->
+  <path d="M256,80 L370,120 L370,250 Q370,340 256,400 Q142,340 142,250 L142,120 Z"
+        fill="none" stroke="url(#goldShield)" stroke-width="2.5"/>
+  <path d="M256,90 L362,127 L362,248 Q362,332 256,390 Q150,332 150,248 L150,127 Z"
+        fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Shield interior line work -->
+  <line x1="256" y1="100" x2="256" y2="380" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+  <line x1="160" y1="200" x2="352" y2="200" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Wolf head - heraldic/crest style -->
+  <g transform="translate(256,230)" fill="url(#goldShield)">
+    <!-- Left ear - sharp, angular, heraldic -->
+    <polygon points="-58,-105 -45,-45 -30,-65"/>
+    <!-- Right ear -->
+    <polygon points="58,-105 45,-45 30,-65"/>
+
+    <!-- Head - more geometric, crest-like -->
+    <path d="M-45,-45 Q-55,-15 -52,15 Q-48,35 -38,48 L-18,68 Q-8,80 0,90 Q8,80 18,68 L38,48 Q48,35 52,15 Q55,-15 45,-45 Q35,-58 22,-63 Q12,-68 0,-70 Q-12,-68 -22,-63 Q-35,-58 -45,-45 Z"/>
+
+    <!-- Inner ear lines -->
+    <polygon points="-53,-90 -46,-50 -34,-63" fill="#0a1628" opacity="0.4"/>
+    <polygon points="53,-90 46,-50 34,-63" fill="#0a1628" opacity="0.4"/>
+
+    <!-- Eyes - narrow, fierce, heraldic -->
+    <path d="M-30,-12 L-20,-18 L-12,-12 L-20,-8 Z" fill="#0a1628"/>
+    <path d="M30,-12 L20,-18 L12,-12 L20,-8 Z" fill="#0a1628"/>
+    <circle cx="-20" cy="-12" r="2.5" fill="#e2c872"/>
+    <circle cx="20" cy="-12" r="2.5" fill="#e2c872"/>
+
+    <!-- Nose bridge line -->
+    <line x1="0" y1="-5" x2="0" y2="20" stroke="#0a1628" stroke-width="1" opacity="0.3"/>
+
+    <!-- Nose -->
+    <path d="M-8,22 Q-8,28 0,32 Q8,28 8,22 Q4,18 0,18 Q-4,18 -8,22 Z" fill="#0a1628"/>
+    <path d="M-5,23 Q-5,27 0,29 Q5,27 5,23 Q3,20 0,20 Q-3,20 -5,23 Z" fill="#a07e2e"/>
+
+    <!-- Mouth/jaw lines -->
+    <line x1="0" y1="32" x2="0" y2="45" stroke="#0a1628" stroke-width="1" opacity="0.4"/>
+    <path d="M-12,38 Q0,45 12,38" fill="none" stroke="#0a1628" stroke-width="0.8" opacity="0.3"/>
+
+    <!-- Fur detail - symmetrical heraldic style -->
+    <line x1="-35" y1="-30" x2="-28" y2="-15" stroke="#e2c872" stroke-width="0.5" opacity="0.3"/>
+    <line x1="35" y1="-30" x2="28" y2="-15" stroke="#e2c872" stroke-width="0.5" opacity="0.3"/>
+    <line x1="-40" y1="10" x2="-30" y2="25" stroke="#e2c872" stroke-width="0.5" opacity="0.3"/>
+    <line x1="40" y1="10" x2="30" y2="25" stroke="#e2c872" stroke-width="0.5" opacity="0.3"/>
+    <line x1="-25" y1="45" x2="-15" y2="55" stroke="#e2c872" stroke-width="0.5" opacity="0.2"/>
+    <line x1="25" y1="45" x2="15" y2="55" stroke="#e2c872" stroke-width="0.5" opacity="0.2"/>
+  </g>
+
+  <!-- Horizontal rule under shield -->
+  <line x1="160" y1="418" x2="352" y2="418" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+  <!-- Small diamond ornament center -->
+  <polygon points="256,413 260,418 256,423 252,418" fill="#c9a84c" opacity="0.5"/>
+
+  <!-- Text: WOLFSTEIN -->
+  <text x="256" y="450" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="normal" letter-spacing="10" fill="#c9a84c">WOLFSTEIN</text>
+
+  <!-- Text: CAPITAL -->
+  <text x="256" y="478" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="normal" letter-spacing="14" fill="#8a9ab5">CAPITAL</text>
+
+  <!-- Small decorative line under text -->
+  <line x1="220" y1="488" x2="292" y2="488" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+</svg>
