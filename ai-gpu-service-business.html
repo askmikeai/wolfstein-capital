@@ -590,12 +590,12 @@
             audio: {
                 title: 'AI GPU services briefing',
                 text: 'Listen to the AI GPU services briefing by Michael Friedberg.',
-                url: 'https://wolfstein-capital.vercel.app/assets/audio/ai-gpu-service-business.mp3',
+                url: 'https://wolfstein-capital.vercel.app/ai-gpu-service-business.html?autoplay=audio#media',
             },
             video: {
                 title: 'AI GPU services video',
                 text: 'Watch the AI GPU services video by Michael Friedberg.',
-                url: 'https://wolfstein-capital.vercel.app/assets/video/ai-gpu-service-business-full.mp4',
+                url: 'https://wolfstein-capital.vercel.app/ai-gpu-service-business.html?autoplay=video#media',
             },
         };
 
@@ -618,6 +618,24 @@
                 window.location.href = `https://wa.me/?text=${fallbackText}`;
             }, 700);
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const autoplay = params.get('autoplay');
+            if (autoplay !== 'video' && autoplay !== 'audio') return;
+
+            const media = document.querySelector(autoplay === 'video' ? '#media video' : '#media audio');
+            const section = document.getElementById('media');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (media) {
+                media.muted = autoplay === 'video';
+                media.play().catch(() => {
+                    media.controls = true;
+                });
+            }
+        });
     </script>
 </body>
 </html>
