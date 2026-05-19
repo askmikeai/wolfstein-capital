@@ -58,6 +58,8 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             text-decoration: none;
+            line-height: 1;
+            white-space: nowrap;
         }
         .logo span { color: var(--white); font-weight: 400; }
         .nav-link {
@@ -252,7 +254,18 @@
             font-size: 0.8rem;
         }
         @media (max-width: 760px) {
-            .nav-container { padding: 1rem; }
+            .nav-container {
+                padding: 0.95rem 1rem;
+                gap: 1rem;
+            }
+            .logo {
+                font-size: 1.12rem;
+                letter-spacing: 1.2px;
+            }
+            .nav-link {
+                font-size: 0.72rem;
+                letter-spacing: 1.1px;
+            }
             .article-hero { padding: 4rem 1.25rem 3rem; }
             main { padding: 0 1.25rem 4rem; }
             .media-card { grid-template-columns: 1fr; }

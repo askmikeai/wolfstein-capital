@@ -94,6 +94,18 @@
             color: var(--gold);
             letter-spacing: 2px;
             text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            flex: 0 0 auto;
         }
 
         .logo span {
@@ -728,6 +740,29 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 0;
+            }
+
+            nav.scrolled {
+                padding: 0.85rem 0;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.12rem;
+                letter-spacing: 1.2px;
+                gap: 0.5rem;
+            }
+
+            .logo img {
+                width: 30px;
+                height: 30px;
+            }
+
             .nav-links {
                 display: none;
                 position: fixed;
@@ -771,7 +806,7 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo"><img src="logo.png" alt="Wolfstein Capital" style="height:36px;vertical-align:middle;margin-right:10px;">Wolfstein <span>Capital</span></div>
+            <div class="logo"><img src="logo.png" alt="Wolfstein Capital">Wolfstein <span>Capital</span></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about" onclick="closeMenu()">About</a></li>
                 <li><a href="#focus" onclick="closeMenu()">Focus</a></li>
